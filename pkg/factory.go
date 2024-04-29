@@ -8,11 +8,12 @@ type Factory interface {
 }
 
 func GetFactory(factoryName string) (Factory, error) {
-	if factoryName == "HP" {
-		return &HPFactory{}, nil
-	}
-	if factoryName == "Asus" {
+	switch factoryName {
+	case Asus:
 		return &AsusFactory{}, nil
+	case HP:
+		return &HPFactory{}, nil
+	default:
+		return nil, errors.New("invalid factory name")
 	}
-	return nil, errors.New("invalid factory name")
 }

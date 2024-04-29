@@ -1,25 +1,22 @@
 package main
 
-import "abstract-factory/pkg"
+import (
+	"abstract-factory/pkg"
+	"fmt"
+)
+
+var brands = []string{pkg.Asus, pkg.HP, "dell"}
 
 func main() {
-	asusFactory, err := pkg.GetFactory("Asus")
-	if err != nil {
-		panic(err)
+	for _, brand := range brands {
+		factory, err := pkg.GetFactory(brand)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		computer := factory.CreateComputer()
+		monitor := factory.CreateMonitor()
+		computer.PrintDetails()
+		monitor.PrintDetails()
 	}
-	asusComputer := asusFactory.CreateComputer()
-	asusMonitor := asusFactory.CreateMonitor()
-
-	hpFactory, err := pkg.GetFactory("HP")
-	if err != nil {
-		panic(err)
-	}
-	hpComputer := hpFactory.CreateComputer()
-	hpMonitor := hpFactory.CreateMonitor()
-
-	asusComputer.PrintDetails()
-	asusMonitor.PrintDetails()
-
-	hpComputer.PrintDetails()
-	hpMonitor.PrintDetails()
 }
