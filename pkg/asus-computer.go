@@ -8,5 +8,5 @@ type AsusComputer struct {
 }
 
 func (a *AsusComputer) PrintDetails() {
-	fmt.Printf("Memory: %dgb, CPU: %d\n", a.Memory, a.CPU)
+	fmt.Printf("[ASUS] Computer, Memory: %dgb, CPU: %d\n", a.Memory, a.CPU)
 }
